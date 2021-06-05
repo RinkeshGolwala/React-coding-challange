@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+  margin: 1em 1.5em;
+  transition: 0.3s ease-in;
+}
+
+.card:hover {
+  transform: translate(0, -5px) scale(105%, 105%);
+}
+
+.image {
+  display: block !important;
+  border-radius: 5px;
+}
+
+.metaContainer {
+  visibility: hidden;
+  display: none;
+  transition: 0.3s ease-in;
+}
+
+.card:hover .metaContainer {
+  z-index: 1;
+  display: block;
+  width: 100%;
+  visibility: visible;
+  color: white;
+  padding: 0 1em;
+  bottom: 20px;
+  position: absolute;
+  font-size: 14px;
+}
+
+.card:hover::after {
+  content: '';
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.metaContainer div {
+  float: right;
+  display: inline;
+}
+
+.description {
+  margin: 0.5em 0;
+  font-family: cursive, sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
