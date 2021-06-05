@@ -10,7 +10,6 @@ export default (req, res) => {
   fetch(`https://api.unsplash.com/photos/${id}`, options)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       if (data) {
         res.status(200).send(formatImgData(data))
       } else {

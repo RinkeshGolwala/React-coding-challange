@@ -5,7 +5,6 @@ export default function ImageCard(props) {
   const timestamp = new Date(props.timestamp)
   const date = timestamp.toDateString().slice(4)
   const handlePhotoSelection = () => {
-    console.log('phtot id: ', props)
     props.onClick(props.id)
   }
   return (

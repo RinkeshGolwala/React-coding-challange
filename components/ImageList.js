@@ -30,7 +30,6 @@ export default function ImageList() {
 
   useEffect(() => {
     if (currentPhoto) {
-      console.log(currentPhoto);
       fetch('/api/photo/' + currentPhoto)
         .then(res => res.json())
         .then(setCurrentPhotoDetails)
