@@ -26,14 +26,12 @@ export default function Lightbox({ data, closeLightBox }) {
     }
   }
 
-  const vw = Math.ceil((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 100);
-  const imageWidth = Math.ceil(data.attr.width / data.attr.height * 70 * vw)
   return (
     <section className={styles.blurredBackground}>
       <button className={styles.closeButton} onClick={closeLightBox}></button>
       <div className={styles.lightboxContainer} ref={lightBoxBG}>
         <div className={styles.centerImage}>
-          <Image {...data.attr} width={imageWidth} height={70 * vw} />
+          <img src={data.attr.src} alt={data.attr.src} className={styles.heroImg}/>
         </div>
         <div className={styles.metaContainer}>
           <p className={styles.description}>{data.description}</p>
