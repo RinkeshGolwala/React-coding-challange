@@ -1,36 +1,49 @@
+import { useEffect, useRef } from 'react'
 import styles from './Lightbox.module.css'
 import Image from 'next/image'
 
-export default function Lightbox({data}) {
+export default function Lightbox({ data, closeLightBox }) {
   const timestamp = new Date(data.timestamp)
   const date = timestamp.toDateString()
+  const lightBoxBG = useRef()
 
-  // function hideOnClickOutside(element) {
-  //   const outsideClickListener = event => {
-  //       if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
-  //         element.style.display = 'none'
-  //         removeClickListener()
-  //       }
-  //   }
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick)
+    document.addEventListener("keydown", handleEscapeKeyClick)
+    return () => {
+      document.removeEventListener("click", handleOutsideClick)
+      document.removeEventListener("keydown", handleEscapeKeyClick)
+    }
+  })
 
-  //   const removeClickListener = () => {
-  //       document.removeEventListener('click', outsideClickListener)
-  //   }
+  const handleOutsideClick = (event) => {
+    lightBoxBG.current && !lightBoxBG.current.contains(event.target) && closeLightBox()
+  }
 
-  //   document.addEventListener('click', outsideClickListener)
-  // }
+  const handleEscapeKeyClick = (event) => {
+    if (event.code == 'Escape') {
+      handleOutsideClick(event)
+    }
+  }
 
+  const vw = Math.ceil((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 100);
+  const imageWidth = Math.ceil(data.attr.width / data.attr.height * 70 * vw)
   return (
-    <div className={styles.lightboxContainer}>
-      <Image {...data.attr} className={styles.image} />
-      <div className={styles.metaContainer}>
-        <p className={styles.description}>{data.description}</p>
-        <em>{date}</em>
-        <div>
-          <img src='/heart.svg' height='12px' width='12px' />
-          <b>{' ' + data.likes}</b>
+    <section className={styles.blurredBackground}>
+      <button className={styles.closeButton} onClick={closeLightBox}></button>
+      <div className={styles.lightboxContainer} ref={lightBoxBG}>
+        <div className={styles.centerImage}>
+          <Image {...data.attr} width={imageWidth} height={70 * vw} />
+        </div>
+        <div className={styles.metaContainer}>
+          <p className={styles.description}>{data.description}</p>
+          <small>{date}</small>
+          <div>
+            <img src='/heart.svg' height='12px' width='12px' />
+            <b>{' ' + data.likes}</b>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

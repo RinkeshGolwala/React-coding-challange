@@ -29,6 +29,11 @@ export default function ImageList() {
   })
 
   useEffect(() => {
+    const body = document?.getElementsByTagName('body')[0]
+    if (body) body.style.overflow = currentPhotoDetails ? 'hidden' : 'visible'
+  }, [currentPhotoDetails])
+
+  useEffect(() => {
     if (currentPhoto) {
       fetch('/api/photo/' + currentPhoto)
         .then(res => res.json())
@@ -62,7 +67,7 @@ export default function ImageList() {
         {photoList.map(photo => <ImageCard key={photo.id} {...photo} onClick={setCurrentPhoto} />)}
         <div ref={loaderRef}></div>
       </section>
-      {/* {currentPhotoDetails && <Lightbox data={currentPhotoDetails} onClose={closePhoto} />} */}
+      {currentPhotoDetails && <Lightbox data={currentPhotoDetails} closeLightBox={closePhoto} />}
     </>
   )
 }
