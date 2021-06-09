@@ -1,15 +1,8 @@
 .card {
   position: relative;
-  margin: 1em 1.5em;
-  -webkit-transition: 0.3s ease-in;
-  -o-transition: 0.3s ease-in;
-  transition: 0.3s ease-in;
-}
-
-.card:hover {
-  -webkit-transform: translate(0, -5px) scale(105%, 105%);
-      -ms-transform: translate(0, -5px) scale(105%, 105%);
-          transform: translate(0, -5px) scale(105%, 105%);
+  transition: 0.1s ease-in;
+  margin: 0 1em 1em;
+  break-inside: avoid;
 }
 
 .image {
@@ -17,11 +10,13 @@
   border-radius: 5px;
 }
 
+.card:hover .image {
+  filter: grayscale(100%);
+}
+
 .metaContainer {
   visibility: hidden;
   display: none;
-  -webkit-transition: 0.3s ease-in;
-  -o-transition: 0.3s ease-in;
   transition: 0.3s ease-in;
 }
 
@@ -44,8 +39,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(black));
-  background: -o-linear-gradient(top, transparent 0%, black 100%);
   background: linear-gradient(to bottom, transparent 0%, black 100%);
 }
 

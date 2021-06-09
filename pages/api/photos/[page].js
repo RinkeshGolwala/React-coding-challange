@@ -1,5 +1,5 @@
 export default (req, res) => {
-  return new Promise (resolve => {
+  return new Promise ((resolve, reject) => {
   const {page} = req.query
   const options = {
     headers: {
@@ -20,7 +20,7 @@ export default (req, res) => {
     })
     .catch(error => {
       res.status(500).send({ error: `Error occurred while fetching images. Error: ${error}` })
-      resolve()
+      reject(error)
     })
   })
 }
@@ -32,8 +32,10 @@ const formatImgList = (list) => {
       attr: {
         alt: img.alt_description || '',
         src: img?.urls?.small,
-        height: '300px',
-        width: img.height && img.width ? `${300 * img.width / img.height}px` : '300px'
+        width: img.width, //'300px',
+        height: img.height //img.width && img.height ? `${300 * img.height / img.width}px` : '300px'
+        // height: '300px',
+        // width: img.height && img.width ? `${300 * img.width / img.height}px` : '300px'
       },
       description: img.description,
       timestamp: img.created_at,

@@ -28,10 +28,10 @@ export default function Lightbox({ data, closeLightBox }) {
 
   return (
     <section className={styles.blurredBackground}>
-      <button className={styles.closeButton} onClick={closeLightBox}></button>
       <div className={styles.lightboxContainer} ref={lightBoxBG}>
+        <button className={styles.closeButton} onClick={closeLightBox}></button>
         <div className={styles.centerImage}>
-          <img src={data.attr.src} alt={data.attr.src} className={styles.heroImg}/>
+          <img src={data.attr.src} alt={data.attr.src} className={styles.heroImg} />
         </div>
         <div className={styles.metaContainer}>
           <p className={styles.description}>{data.description}</p>
