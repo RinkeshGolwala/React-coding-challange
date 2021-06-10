@@ -46,16 +46,11 @@
   }
 }
 
-@media only screen and (max-width: 1023px) and (orientation: landscape) {
+@media only screen and (max-height: 767px) and (orientation: landscape) {
   .headerContainer {
     font-size: 10px;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    flex-direction: row;
+    align-items: baseline;
   }
   .headerContainer p {
     margin-left: 1em;

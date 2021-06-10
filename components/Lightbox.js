@@ -29,7 +29,9 @@ export default function Lightbox({ data, closeLightBox }) {
   return (
     <section className={styles.blurredBackground}>
       <div className={styles.lightboxContainer} ref={lightBoxBG}>
-        <button className={styles.closeButton} onClick={closeLightBox}></button>
+        <button className={styles.closeButton} onClick={closeLightBox}>
+          <img src='/close.svg' />
+        </button>
         <div className={styles.centerImage}>
           <img src={data.attr.src} alt={data.attr.src} className={styles.heroImg} />
         </div>
